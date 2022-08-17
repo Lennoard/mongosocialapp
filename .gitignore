@@ -102,4 +102,24 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Yarn
+.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+yarn.lock
+
+# Swap the comments on the following lines if you don't wish to use zero-installs
+# Documentation here: https://yarnpkg.com/features/zero-installs
+!.yarn/cache
+
+#.pnp.*
+.yarn/
+node_modules/
+
+# Others
 quickstart-guide/.env
+package-lock.json
