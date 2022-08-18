@@ -47,12 +47,4 @@ export class AuthController {
 
     return response.json(databaseUser);
   };
-
-  public getSignUp = (request: Request, response: Response) => {
-    return response.sendFile(path.join(__dirname, "../signup/index.html"));
-  };
-
-  public getSignIn = (request: Request, response: Response) => {
-    return response.sendFile(path.join(__dirname, "../signin/index.html"));
-  };
 }
