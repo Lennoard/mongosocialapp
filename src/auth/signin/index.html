@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in | SocialApp</title>
+  </head>
+  <body>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      html {
+        display: table;
+        margin: auto;
+      }
+
+      body {
+        padding: 16px;
+        background-color: #f5f5f5;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      main {
+        padding: 24px;
+        border-radius: 24px;
+        background-color: white;
+      }
+    </style>
+
+    <main>
+      <h1>Social App</h1>
+      <h2>Sign In</h2>
+      <br />
+
+      <input id="email" type="text" placeholder="E-mail" />
+      <input id="password" type="password" placeholder="Senha" />
+
+      <button id="submit">Enviar</button>
+      <p id="error-text" style="color: red; font-weight: 600"></p>
+      <br />
+      <br />
+    </main>
+
+    <script>
+      const errorElem = document.getElementById("error-text");
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("submit");
+        button?.addEventListener("click", checkData);
+      });
+
+      const checkData = () => {
+        const data = getFormData();
+
+        if (data.password.length == 0 || data.email.length == 0) {
+          errorElem.textContent = "Preencha os campos corretamente";
+          return;
+        }
+
+        submit(data);
+      };
+
+      const submit = (data) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/auth/signin", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onload = function () {
+          var result = JSON.parse(this.responseText);
+          if (result.error) {
+            errorElem.textContent = result.error;
+            return;
+          }
+
+          errorElem.textContent = "Bem-vindo!";
+        };
+
+        xhr.send(JSON.stringify(data));
+      };
+
+      const getFormData = () => {
+        return {
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+        };
+      };
+    </script>
+  </body>
+</html>

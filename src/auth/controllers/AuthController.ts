@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import path from "path";
+
 import { Collection, Db, MongoClient } from "mongodb";
 import { User } from "../../domain/models/User";
 
@@ -15,9 +17,9 @@ export class AuthController {
   }
 
   public signUp = async (request: Request, response: Response) => {
-    const { email, name, password } = request.body;
-
+    const { name, email, password } = request.body;
     const newUser: User = { email, name, password };
+
     const databaseUser = await this.usersCollection.findOne<User>({ email });
 
     if (databaseUser) {
@@ -40,11 +42,17 @@ export class AuthController {
     });
 
     if (!databaseUser) {
-      return response
-        .status(401)
-        .json({ error: "Invalid email or password" });
+      return response.status(401).json({ error: "Invalid email or password" });
     }
 
     return response.json(databaseUser);
+  };
+
+  public getSignUp = (request: Request, response: Response) => {
+    return response.sendFile(path.join(__dirname, "../signup/index.html"));
+  };
+
+  public getSignIn = (request: Request, response: Response) => {
+    return response.sendFile(path.join(__dirname, "../signin/index.html"));
   };
 }
