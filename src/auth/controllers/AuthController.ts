@@ -5,7 +5,7 @@ import { User } from "../../domain/models/User";
 export class AuthController {
   private client: MongoClient;
   private db: Db;
-  private usesrsCollection: Collection<User>;
+  private usersCollection: Collection<User>;
 
   constructor() {
     const uri = "mongodb://localhost:27017";
@@ -40,7 +40,9 @@ export class AuthController {
     });
 
     if (!databaseUser) {
-      return response.status(401).json({ error: "Invalid email or password" });
+      return response
+        .status(401)
+        .json({ error: "Invalid email or password" });
     }
 
     return response.json(databaseUser);
