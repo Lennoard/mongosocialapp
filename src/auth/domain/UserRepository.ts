@@ -1,5 +1,5 @@
 import { Filter } from "mongodb";
-import { User } from "../../entities/User";
+import { User } from "../../common/entities/User";
 
 export interface UserRepository {
   find(filter: Filter<User>): Promise<User | null>;

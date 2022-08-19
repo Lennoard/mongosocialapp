@@ -1,12 +1,13 @@
 import { Db, Filter, MongoClient } from "mongodb";
-import { User } from "../../entities/User";
+import { User } from "../../common/entities/User";
 import { UserRepository } from "../domain/UserRepository";
 
 export class UserRepositoryImpl implements UserRepository {
   private client: MongoClient;
   private db: Db;
 
-  constructor(uri: string) {
+  constructor() {
+    const uri = "mongodb://localhost:27017";
     this.client = new MongoClient(uri);
     this.db = this.client.db("socialapp");
   }
@@ -28,5 +29,5 @@ export class UserRepositoryImpl implements UserRepository {
 
   private getUsersCollection = () => {
     return this.db.collection<User>("users");
-  }
+  };
 }
