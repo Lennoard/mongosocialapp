@@ -9,3 +9,4 @@ Example JavaScript/TypeScript study application and database connection.
 - [MongoDB](https://www.mongodb.com/)
 - [MongoDB Quick Start - Node.js](https://www.mongodb.com/docs/drivers/node/current/quick-start)
 - [Read environment variables from Node.js](https://nodejs.dev/en/learn/how-to-read-environment-variables-from-nodejs)
+- [JWT Authentication with Node.js](https://www.geeksforgeeks.org/jwt-authentication-with-node-js/)
