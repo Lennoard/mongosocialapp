@@ -1,11 +1,10 @@
 import { Router } from "express";
+import { AuthMiddleware } from "../auth/middleware/auth-middleware";
 
 const router = Router();
 
-const feed = "feed";
+router.use(AuthMiddleware);
 
-router.get("/feed", (_, response) => {
-  response.json({ feed });
-});
+router.get("/", (req, res) => res.json({ posts: [] }));
 
 export default router;
